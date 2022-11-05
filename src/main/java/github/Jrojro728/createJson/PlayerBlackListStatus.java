@@ -11,30 +11,30 @@ import java.net.URL;
 
 public class PlayerBlackListStatus{
     private String name;
-    private String uuid;
+    private String UUID;
     private String tag;
-    private String addUse;
+    private String adduse;
     private String reason;
-    private String dungeonBlack;
-    private String dungeonBlackReason;
-    private String rank;
+    private String DungeonBlack;
+    private String Dreason;
+    private String Rank;
     private String contact;
     private boolean fun;
 
-    public String getName() {
+    public String getname() {
         return name;
     }
 
     public String getUUID() {
-        return uuid;
+        return UUID;
     }
 
     public String getTag() {
         return tag;
     }
 
-    public String getAddUse() {
-        return addUse;
+    public String getadduse() {
+        return adduse;
     }
 
     public String getReason() {
@@ -42,15 +42,15 @@ public class PlayerBlackListStatus{
     }
 
     public String getDungeonBlack() {
-        return dungeonBlack;
+        return DungeonBlack;
     }
 
-    public String getDungeonBlackReason() {
-        return dungeonBlackReason;
+    public String getDreason() {
+        return Dreason;
     }
 
     public String getRank() {
-        return rank;
+        return Rank;
     }
 
     public String getContact() {
@@ -66,7 +66,7 @@ public class PlayerBlackListStatus{
     }
 
     public void setUUID(String uuid) {
-        this.uuid = uuid;
+        this.UUID = uuid;
     }
 
     public void settag(String tag) {
@@ -74,7 +74,7 @@ public class PlayerBlackListStatus{
     }
 
     public void setaddUse(String addUse) {
-        this.addUse = addUse;
+        this.adduse = addUse;
     }
 
     public void setreason(String reason) {
@@ -82,15 +82,15 @@ public class PlayerBlackListStatus{
     }
 
     public void setDungeonBlack(String dungeonBlack) {
-        this.dungeonBlack = dungeonBlack;
+        this.DungeonBlack = dungeonBlack;
     }
 
     public void setDreason(String dungeonBlackReason) {
-        this.dungeonBlackReason = dungeonBlackReason;
+        this.Dreason = dungeonBlackReason;
     }
 
     public void setRank(String rank) {
-        this.rank = rank;
+        this.Rank = rank;
     }
 
     public void setcontact(String contact) {
@@ -102,17 +102,14 @@ public class PlayerBlackListStatus{
     }
 
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36";
-    private final Gson gson = new GsonBuilder().create();
 
-    public PlayerBlackListStatus() {
-
-    }
+    public PlayerBlackListStatus() {}
 
     public static StringBuffer sendGet(String host) {
         try {
-            HttpURLConnection connection = null;
-            BufferedReader bufferedReader = null;
-            StringBuffer resultBuffer = null;
+            HttpURLConnection connection;
+            BufferedReader bufferedReader;
+            StringBuffer resultBuffer;
 
             URL url = new URL(host);
             connection = (HttpURLConnection) url.openConnection();
@@ -121,14 +118,14 @@ public class PlayerBlackListStatus{
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setUseCaches(false);
+
             int responseCode = connection.getResponseCode();
-//
-//            System.out.println(responseCode);
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = connection.getInputStream();
                 resultBuffer = new StringBuffer();
                 String line;
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "GBK"));
+
                 while ((line = bufferedReader.readLine()) != null) {
                     resultBuffer.append(line);
                 }
@@ -137,7 +134,7 @@ public class PlayerBlackListStatus{
             return new StringBuffer("error");
         } catch (Exception e) {
             e.printStackTrace();
+            return new StringBuffer("error");
         }
-        return new StringBuffer("error");
     }
 }

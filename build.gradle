@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "4.0.4"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 group 'github.Jrojro728'
@@ -13,7 +13,12 @@ jar{
 }
 
 repositories {
-    mavenCentral()
+//    mavenCentral()
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/grails-core' }
+    maven { url "https://maven.aliyun.com/repository/public"}
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
 }
 
 dependencies {
